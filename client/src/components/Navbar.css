@@ -1,0 +1,45 @@
+nav {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+  }
+  
+  nav h1 {
+    display: inline;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  nav button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    font: inherit;
+  }
+  
+  nav button:hover {
+    text-decoration: none;
+  }
+  
