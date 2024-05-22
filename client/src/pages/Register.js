@@ -9,7 +9,7 @@ const Register = () => {
     email: '',
     password: '',
   });
-  const { showMessage } = useMessage();
+  const { addMessage } = useMessage();
   const navigate = useNavigate();
 
   const { username, email, password } = formData;
@@ -21,14 +21,14 @@ const Register = () => {
     try {
       const res = await axios.post('/api/auth/register', formData);
       if (res && res.data && res.data.token) {
-        showMessage('Registration successful! Please log in.');
+        addMessage('Registration successful! Please log in.');
         navigate('/login');
       } else {
-        showMessage('Registration failed. Please try again.');
+        addMessage('Registration failed. Please try again.');
       }
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
-      showMessage('Registration failed. Please try again.');
+      addMessage('Registration failed. Please try again.');
     }
   };
 

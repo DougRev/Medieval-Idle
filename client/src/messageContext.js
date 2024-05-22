@@ -1,22 +1,20 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const MessageContext = createContext();
 
-export const MessageProvider = ({ children }) => {
-  const [message, setMessage] = useState(null);
+export const useMessage = () => useContext(MessageContext);
 
-  const showMessage = (msg) => {
+export const MessageProvider = ({ children }) => {
+  const [message, setMessage] = useState('');
+
+  const addMessage = (msg) => {
     setMessage(msg);
-    setTimeout(() => {
-      setMessage(null);
-    }, 3000);
+    setTimeout(() => setMessage(''), 3000);
   };
 
   return (
-    <MessageContext.Provider value={{ message, showMessage }}>
+    <MessageContext.Provider value={{ message, addMessage }}>
       {children}
     </MessageContext.Provider>
   );
 };
-
-export const useMessage = () => useContext(MessageContext);

@@ -1,0 +1,54 @@
+.admin-dashboard {
+    padding: 20px;
+  }
+  
+  .admin-dashboard h1, .admin-dashboard h2 {
+    color: #333;
+  }
+  
+  .admin-dashboard table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .admin-dashboard th, .admin-dashboard td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .admin-dashboard th {
+    background-color: #f4f4f4;
+  }
+  
+  .admin-dashboard button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .admin-dashboard button:hover {
+    background-color: #0056b3;
+  }
+  
+  .admin-dashboard button.delete {
+    background-color: #dc3545;
+  }
+  
+  .admin-dashboard button.delete:hover {
+    background-color: #c82333;
+  }
+  
+  .admin-dashboard .edit-role-form {
+    margin-top: 10px;
+  }
+  
+  .admin-dashboard .edit-role-form select, 
+  .admin-dashboard .edit-role-form button {
+    margin-right: 10px;
+  }

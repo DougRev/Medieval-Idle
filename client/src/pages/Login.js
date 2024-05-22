@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../authContext';
-import { useMessage } from '../messageContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const [message, setMessage] = useState('');
   const { login } = useAuth();
-  const { showMessage } = useMessage();
   const navigate = useNavigate();
 
   const { email, password } = formData;
@@ -19,27 +18,35 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await axios.post('/api/auth/login', formData);
-      if (res && res.data && res.data.token) {
-        login(res.data.token);
-        showMessage('Login successful!');
-        navigate('/dashboard');
-      } else {
-        showMessage('Login failed. Please try again.');
-      }
+      const res = await axios.post('/api/auth/login', { email, password });
+      const { token } = res.data;
+      localStorage.setItem('token', token); // Store token in local storage
+      login(token);
+      navigate('/dashboard');
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
-      showMessage('Login failed. Please try again.');
+      setMessage('Invalid credentials. Please try again.');
     }
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input type="email" name="email" value={email} onChange={onChange} required placeholder="Email" />
-      <input type="password" name="password" value={password} onChange={onChange} required placeholder="Password" />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <h1>Login</h1>
+      {message && <div className="message">{message}</div>}
+      <form onSubmit={onSubmit}>
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" value={email} onChange={onChange} required />
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" name="password" value={password} onChange={onChange} required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 };
 
