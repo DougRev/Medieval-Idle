@@ -71,3 +71,4 @@ temp/
 
 # Windows system files
 Thumbs.db
+server/config/google-cloud-key.json
